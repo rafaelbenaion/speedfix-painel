@@ -66,7 +66,7 @@ $(document).ready(function(){
       <div class="col-md-6" id="coluna-login" style="max-width:350px;float:left;">
       <h1 class="titulo-russo" id="login-titulo-mobile">Cadastro<br>SPEEDFIX</h1>
       <h5 class="texto-pt" id="login-texto">A SPEEDFIX ajuda a consertar seus problemas. E você pode solicitar os seus pedidos aqui dentro.</h5>
-        <form action="authentication.php" method="post">
+        <form method="post">
 
 
           <div class="input-group login">

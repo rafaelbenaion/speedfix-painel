@@ -57,7 +57,7 @@ $(document).ready(function() {
     <div class="container" style="max-width:800px;padding-left:0px;padding-right:0px;">
         <div id="banner-box">
          <h5 class="texto-pt" id="banner-default-texto">SPEEDFIX</h5>
-          <h1 class="titulo-russo" id="banner-default-title">VER ORÇAMENTO</h1>
+          <h1 class="titulo-russo" id="banner-default-title">RESPONDER</h1>
          
           
         </div>
@@ -86,8 +86,53 @@ $(document).ready(function() {
 
 
 <div class="container" style="max-width:800px;padding-left:0px;padding-right:0px;">
+
+<h1 class="titulo-russo" id="orcamento-title">Entrar em contato</h1>
+<h5 class="texto-pt" id="orcamento-text">Responda o orçamento solicitado pelo usuário,<br> detalhe as infomações necessárias no campo de mensagem.</h5><br>
+                <form action="home-admin.php" method="post" enctype="multipart/form-data">
+<fieldset>
+<div class="row" id="row-orcamento" style="padding:5px 0 5px 0;margin-right:0px !important;margin-left:0px !important;">
+  <div class="col-sm-6" style="padding-left:0px;padding-right:0px;">
+<div class="input-group login">
+            <span class="input-group-addon" id="input-lateral2">TÍTULO</span>
+            <input  class="form-control input-login2" placeholder="Digite um título" type="text" name="nome" id="nome" maxlength="255" required>
+          </div>
+          <br>
+         <input style="padding-top:14px;padding-bottom:14px;" type="file" name="imagem" id="arquivo-orcamento" maxlength="255" />
+  </div>
+  <div class="col-sm-6" style="padding-right:0px;padding-left:0px;">
+
+  
+  <div class="input-group login">
+            <span class="input-group-addon" id="input-lateral2">MENSAGEM</span>
+            <textarea class="form-control input-login2" name="descricao" id="descricao" placeholder="Digite uma mensagem explicando a situação" required></textarea>  
+          </div>
+          
+
+        <input type="hidden" name="bannerUserIdResposta" value="<?=$orcamento['userIdBanner']?>" />
+        <input type="hidden" name="bannerIdResposta" value="<?=$orcamento['idBanner']?>" />
+        <input type="hidden" name="userIdResposta" value="<?= $_SESSION['autenticado_id']?>" />
+
+              
+          <div class="btn-group btn-group-justified" role="group" style="width:85%;">
+            <div class="btn-group" role="group">
+             <input id="btn-grey-full" type="submit" name="cadastrar" value="ENVIAR"  class="btn btn-grey" />
+            </div>
+
+          </div>
+          </div>
+
+</div>
+
+
+</fieldset>
+
+</form>
+<br><br>
+<h1 class="titulo-russo" id="orcamento-title">Orçamento</h1>
+<h5 class="texto-pt" id="orcamento-text">Você está enviando uma resposta para o orçamento abaixo.</h5><br>
  
- <div id="conteudo">
+
                     <div id="main">
                         <div id="errorMsg"></div>
                         <?php 
@@ -101,71 +146,21 @@ $(document).ready(function() {
                             <fieldset style="background-color:transparent;border-color:#f18725;">
                           
                                 <p><b>Marca: </b> <?=urldecode($orcamento['nomeBanner'])?></p>
-                               
                                 <p><b>Modelo: </b> <?=urldecode($orcamento['linkBanner'])?></p>
-                                
                                 <p><b>Mensagem: </b><?=urldecode($orcamento['descricaoBanner'])?></p>
-
                                 <?php if($orcamento['imagemBanner']){?>
                                 <p><b>Anexo: </b><a href="../upload/<?=$orcamento['imagemBanner']?>">Baixar anexo</a></p>
                                 <?php }?>
-
                                 <span style="font-size:12px !important;">-<br>Data:  <?=$orcamento['dataBanner']?> - (ref: <?=urldecode($orcamento['idBanner'])?>)</span>
                             
                             </fieldset>
                   
                     </div>
-                    <div id="main">
-                        <div id="errorMsg"></div>
-                         <?php
-
-                                $rn = 0;
-                                
-                                while(@$all[$rn]) {
-                                       $rn++;
-                            
-                                }
-                            
-                        ?>
-                        <br><h4>Respostas: (<?=$rn?>)</h4>
-
-                        
-                           
-                        <?php
-
-                                $r = 0;
-                                
-                                while(@$all[$r]) {
-                            
-                        ?>
-                       
-                            <fieldset style="border-color:#0e3f84;">
-                            <?php 
-                              $CRUDMySQL2 = new CRUDMySQL();
                     
-                              $userP2 = $CRUDMySQL2->getUserId($all[$r]['userIdResposta']);
-
-                              ?>
-                                <p style="font-size:18px;"><b>Título: </b><?=urldecode($all[$r]['nomeResposta'])?></p>
-                                <p><b>Mensagem:</b> <?=urldecode($all[$r]['descricaoResposta'])?></p> 
-                                <?php if($all[$r]['imagemResposta']){?>           
-                                <p><b>Anexo: </b><a href="../upload/<?=$all[$r]['imagemResposta']?>">Baixar anexo</a></p>
-                                <?php } ?>
-                                <br>
-                                <p style="font-size:11px;"><b>Enviado por: </b><?=$userP2['login']?><br><b>Data: </b><?=urldecode($all[$r]['dataResposta'])?></p>
-                            </fieldset>
-                  
-                        <?php
-                            
-                                    $r++;
-                            
-                                }
-                            
-                        ?>
-                    </div>
                 </div>
 
-</div>
+
+
 
  
      <?php include('footer.php'); ?>

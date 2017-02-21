@@ -28,7 +28,7 @@ $respostas = new respostas();
 
 //$categoria = $categorias->get();
 
-if(isset($_POST['cadastrar']) && $_POST['cadastrar'] == 'Cadastrar') {
+if(isset($_POST['cadastrar']) && $_POST['cadastrar'] == 'ENVIAR') {
 	
 	if(!empty($_POST['nome']) && !empty($_POST['descricao'])) {
 		
@@ -64,7 +64,11 @@ if(isset($_POST['cadastrar']) && $_POST['cadastrar'] == 'Cadastrar') {
 		$respostas->linkResposta = $_POST['link'];
 		
 		$respostas->statusResposta = $_POST['status'];
-		
+
+		$respostas->bannerUserIdResposta = $_POST['bannerUserIdResposta'];
+
+		$respostas->dataResposta = date("d/m/Y");
+
 		$respostas->newResposta();
 		
 		$msg = "Resposta cadastrado com sucesso";

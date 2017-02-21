@@ -10,7 +10,8 @@
 		public $descricaoBanner;
 		public $imagemBanner;
 		public $statusBanner;
-		public $tipoBanner;		
+		public $tipoBanner;	
+		public $dataBanner;		
 		
 		// Metódos
 		
@@ -18,9 +19,9 @@
 			
 			$db = new DBMySQL();
 			
-			$query = "INSERT INTO `orcamentos` (`userIdBanner`,`nomeBanner`,`descricaoBanner`,`imagemBanner`,`linkBanner`,`statusBanner`,`tipoBanner`) VALUES ";
+			$query = "INSERT INTO `orcamentos` (`userIdBanner`,`nomeBanner`,`descricaoBanner`,`imagemBanner`,`linkBanner`,`statusBanner`,`tipoBanner`,`dataBanner`) VALUES ";
 			
-			$query .= "('".$this->userIdBanner."','".$this->nomeBanner."','".$this->descricaoBanner."','".$this->imagemBanner."','".$this->linkBanner."','".$this->statusBanner."','".$this->tipoBanner."');";
+			$query .= "('".$this->userIdBanner."','".$this->nomeBanner."','".$this->descricaoBanner."','".$this->imagemBanner."','".$this->linkBanner."','".$this->statusBanner."','".$this->tipoBanner."','".$this->dataBanner."');";
 			
 			$db->do_query($query);
 			

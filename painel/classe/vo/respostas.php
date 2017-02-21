@@ -5,11 +5,17 @@
 		// Definições
 
 		public $idResposta;
+		public $bannerIdResposta;	
 		public $userIdResposta;
 		public $nomeResposta;
 		public $descricaoResposta;
 		public $imagemResposta;
-		public $statusResposta;		
+		public $statusResposta;
+		
+		public $dataResposta;	
+		public $bannerUserIdResposta;
+
+
 		
 		// Metódos
 		
@@ -17,9 +23,9 @@
 			
 			$db = new DBMySQL();
 			
-			$query = "INSERT INTO `respostas` (`bannerIdResposta`,`userIdResposta`,`nomeResposta`,`descricaoResposta`,`imagemResposta`,`linkResposta`,`statusResposta`) VALUES ";
+			$query = "INSERT INTO `respostas` (`bannerIdResposta`,`userIdResposta`,`nomeResposta`,`descricaoResposta`,`imagemResposta`,`linkResposta`,`statusResposta`,`bannerUserIdResposta`,`dataResposta`) VALUES ";
 			
-			$query .= "('".$this->bannerIdResposta."','".$this->userIdResposta."','".$this->nomeResposta."','".$this->descricaoResposta."','".$this->imagemResposta."','".$this->linkResposta."','".$this->statusResposta."');";
+			$query .= "('".$this->bannerIdResposta."','".$this->userIdResposta."','".$this->nomeResposta."','".$this->descricaoResposta."','".$this->imagemResposta."','".$this->linkResposta."','".$this->statusResposta."','".$this->bannerUserIdResposta."','".$this->dataResposta."');";
 			
 			$db->do_query($query);
 			

@@ -68,7 +68,7 @@ $(document).ready(function() {
 <h1 class="titulo-russo" id="orcamento-title">Dados do aparelho</h1>
 <h5 class="texto-pt" id="orcamento-text">Preencha com maior riqueza de detalhes possível,<br>possibilitando o melhor atendimento à sua necessidade.</h5>
 <br>
-<form action="home.php?<?=$_SERVER['QUERY_STRING']?>" method="post" enctype="multipart/form-data">
+<form action="home.php" method="post" enctype="multipart/form-data">
 <fieldset>
 <div class="row" id="row-orcamento" style="padding:5px 0 5px 0;margin-right:0px !important;margin-left:0px !important;">
   <div class="col-sm-6" style="padding-left:0px;padding-right:0px;">

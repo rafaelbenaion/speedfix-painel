@@ -26,7 +26,7 @@ function anti_injection($sql){
 	return $sql;
 }
 
-if($_GET['operacao'] == 'sair'){
+if($_GET['act'] == 'out'){
 	session_start();
 	$_SESSION["autenticado_painel"] = NULL;
 	$_SESSION["autenticado_id"] = NULL;

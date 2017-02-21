@@ -15,6 +15,20 @@
 			return $tableName;
 		}
 
+		function getUserId($idBanner) {
+			
+			$db = new DBMySQL();
+			
+			$query = "SELECT * FROM `users` WHERE `idusuario` = '$idBanner'";
+				
+			$db->do_query($query);
+				
+			$result = $db->getRow();
+				
+			return $result;
+			
+		}
+
 		public function newUser($login, $senha) {
 			
 			$db = new DBMySQL();

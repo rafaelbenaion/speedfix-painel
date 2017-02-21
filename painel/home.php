@@ -1,18 +1,25 @@
 
 <?php 
+ob_start();
 session_start();
 include('meta.php');
+
+if($_SESSION['autenticado_id'] == 1){
+header("Location: home-admin.php");
+}
 
 require('classe/bo/utilidadesBO.php');
 require('classe/bo/uploadBO.php');
 require_once 'classe/vo/orcamentos.php';
+require_once 'classe/vo/respostas.php';
+require 'classe/bo/CRUDMySQL.php';
 
 $utilidadesBO = new utilidadesBO();
 $uploadBO = new uploadBO();
 
 $orcamentos = new orcamentos();
 
-
+print_r(date("d/m/Y"));
 if(isset($_POST['cadastrar']) && $_POST['cadastrar'] == 'ENVIAR') {
   
   if(!empty($_POST['nome']) && !empty($_POST['descricao'])) {
@@ -48,6 +55,8 @@ if(isset($_POST['cadastrar']) && $_POST['cadastrar'] == 'ENVIAR') {
     $orcamentos->statusBanner = $_POST['status'];
 
     $orcamentos->tipoBanner = $_POST['tipo'];
+
+    $orcamentos->dataBanner = date("d/m/Y");
     
     $orcamentos->newBanner();
     
@@ -185,17 +194,30 @@ $all = $orcamentos->getAlluser($_SESSION['autenticado_id']);
                             $r = 0;
                             
                             while(@$all[$r]) {
+
+                            $respostas = new respostas();
+                            $allR = $respostas->getAlluser($all[$r]['idBanner']);
+                            $rn = 0;                                
+                            while(@$allR[$rn]) {$rn++;}
                           
                           ?>
 
 <div class="row" id="row-orcamento" style="border-bottom:1px solid grey;padding:20px 0 20px 0;margin-right:0px !important;margin-left:0px !important;">
-  <div class="col-sm-2"> <h1 class="titulo-russo home-data" id="home-titulo" style="font-size:23px !important;">26/01</h1></div>
+  <?php
+
+$data = explode("/", $all[$r]['dataBanner']);
+$data = $data[0]."/".$data[1]; // piece1
+
+
+   ?>
+  <div class="col-sm-2"> <h1 class="titulo-russo home-data" id="home-titulo" style="font-size:23px !important;"><?=$data?></h1></div>
   <div class="col-sm-2"><img id="img-tipo" src="<?php if($all[$r]['tipoBanner']==1){echo'img/tipo1.png';}else{echo'img/tipo2.png';}?>"></div>
   <div class="col-sm-4"> <h1 class="texto-pt" id="home-texto-solicitou">Você fez uma solicitação de orçamento.</h1></div>
+
   <div class="col-sm-4"><a href="ver_orcamento.php?i=<?=$all[$r]['idBanner']?>&token=<?=md5($all[$r]['idBanner'])?>">
 
 
-  <h1 class="texto-pt" id="home-texto-solicitou"><img id="icon-msg" src="img/icon-msg.png">Clique para ler respostas</h1></a></div>
+  <h1 class="texto-pt" id="home-texto-solicitou"><img id="icon-msg" src="img/icon-msg.png"><?= "(".$rn.")" ?> Clique para ler respostas</h1></a></div>
 </div>
 
   <?php

@@ -57,6 +57,8 @@ if(isset($_POST['cadastrar']) && $_POST['cadastrar'] == 'ENVIAR') {
 		$orcamentos->statusBanner = $_POST['status'];
 
 		$orcamentos->tipoBanner = $_POST['tipo'];
+
+		$orcamentos->dataBanner = date("d/m/Y");
 		
 		$orcamentos->newBanner();
 		

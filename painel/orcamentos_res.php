@@ -84,7 +84,7 @@ include('meta.php');
                                         <option value="2">Não publicado</option>
                                     </select>
                                 </p>
-                               
+                                 <input type="hidden" name="bannerUserIdResposta" value="<?=$banner['userIdBanner']?>" />
                                 <input type="hidden" name="bannerIdResposta" value="<?=$banner['idBanner']?>" />
                                 <input type="hidden" name="userIdResposta" value="<?= $_SESSION['autenticado_id']?>" />
                                 <input type="submit" name="cadastrar" value="Cadastrar" />
