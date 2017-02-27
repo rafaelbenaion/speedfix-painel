@@ -145,9 +145,9 @@ $(document).ready(function() {
 <h1 class="titulo-russo" id="orcamento-title" style="text-transform:capitalize;">Senha</h1>
 <h5 class="texto-pt" id="orcamento-text">Você pode utilizar esse campo para criar uma nova senha.</h5>
 <br>
-<?php if($msgE != "") { ?><h5 style="color:red !important;" class="texto-pt" id="orcamento-text">Oops. <?=$msgE?></h5><?php } ?>
-  <?php if($msgA != "") { ?><h5 style="color:green !important;" class="texto-pt" id="orcamento-text"><?=$msgA?></h5><?php } ?>
-<br>
+<?php if($msgE != "") { ?><h5 style="color:red !important;" class="texto-pt" id="orcamento-text">Oops. <?=$msgE?></h5><br><?php } ?>
+  <?php if($msgA != "") { ?><h5 style="color:green !important;" class="texto-pt" id="orcamento-text"><?=$msgA?></h5><br><?php } ?>
+
 <form  method="post">
 <fieldset>
 <div class="row" id="row-orcamento" style="padding:5px 0 5px 0;margin-right:0px !important;margin-left:0px !important;">
