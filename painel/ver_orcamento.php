@@ -85,36 +85,33 @@ $(document).ready(function() {
 
 
 
-<div class="container" style="max-width:800px;padding-left:0px;padding-right:0px;">
+<div class="container" style="max-width:800px;padding:15px;">
  
- <div id="conteudo">
-                    <div id="main">
-                        <div id="errorMsg"></div>
+
+                  <div>
+                        
                         <?php 
                         $CRUDMySQL = new CRUDMySQL();
               
                         $userP = $CRUDMySQL->getUserId($orcamento['userIdBanner']);
 
                         ?>
-                        <h3 style="text-transform: capitalize;"><?=$userP['login']?></h3>
-                    
-                            <fieldset style="background-color:transparent;border-color:#f18725;">
-                          
-                                <p><b>Marca: </b> <?=urldecode($orcamento['nomeBanner'])?></p>
-                               
-                                <p><b>Modelo: </b> <?=urldecode($orcamento['linkBanner'])?></p>
-                                
-                                <p><b>Mensagem: </b><?=urldecode($orcamento['descricaoBanner'])?></p>
-
+          
+                            <fieldset id="ver-orcamento-div" style="background-image: url('img/grafism-topo3.png');">
+                                <h1 class="titulo-russo" id="orcamento-title" style="text-transform: capitalize;color:white !important;background-image: url('img/grafism-topo3.png');padding-top:15px;padding-bottom:15px;background-position: 30% 50%;"><?=$userP['login']?></h1>
+                                <p><b>MARCA: </b> <?=urldecode($orcamento['nomeBanner'])?></p>
+                                <p><b>MODELO: </b> <?=urldecode($orcamento['linkBanner'])?></p>
+                                <p><b>MENSAGEM: </b><?=urldecode($orcamento['descricaoBanner'])?></p>
                                 <?php if($orcamento['imagemBanner']){?>
-                                <p><b>Anexo: </b><a href="../upload/<?=$orcamento['imagemBanner']?>">Baixar anexo</a></p>
+                                <p><b>ANEXO: </b><a href="../upload/<?=$orcamento['imagemBanner']?>">Baixar anexo</a></p>
                                 <?php }?>
-
-                                <span style="font-size:12px !important;">-<br>Data:  <?=$orcamento['dataBanner']?> - (ref: <?=urldecode($orcamento['idBanner'])?>)</span>
+                                <span style="font-size:11px !important;">-<br><b>Data:</b>  <?=$orcamento['dataBanner']?><br><b>Ref.:</b> <?=urldecode($orcamento['idBanner'])?></span>
                             
                             </fieldset>
                   
                     </div>
+                    
+
                     <div id="main">
                         <div id="errorMsg"></div>
                          <?php
@@ -127,7 +124,7 @@ $(document).ready(function() {
                                 }
                             
                         ?>
-                        <br><h4>Respostas: (<?=$rn?>)</h4>
+                        <br><h1 class="titulo-russo" id="orcamento-title" style="text-transform: capitalize;padding-top:15px;padding-bottom:15px;font-size:17px !important;">RESPOSTAS (<?=$rn?>)</h1>
 
                         
                            
@@ -146,13 +143,14 @@ $(document).ready(function() {
                               $userP2 = $CRUDMySQL2->getUserId($all[$r]['userIdResposta']);
 
                               ?>
-                                <p style="font-size:18px;"><b>Título: </b><?=urldecode($all[$r]['nomeResposta'])?></p>
-                                <p><b>Mensagem:</b> <?=urldecode($all[$r]['descricaoResposta'])?></p> 
+                              <h1 class="titulo-russo" id="orcamento-title" style="text-transform: capitalize;padding-top:15px;padding-bottom:15px;color:#0e3f84 !important;"><?=urldecode($all[$r]['nomeResposta'])?></h1>
+                              
+                                <p><?=urldecode($all[$r]['descricaoResposta'])?></p> 
                                 <?php if($all[$r]['imagemResposta']){?>           
-                                <p><b>Anexo: </b><a href="../upload/<?=$all[$r]['imagemResposta']?>">Baixar anexo</a></p>
+                                <p><b>ANEXO: </b><a href="../upload/<?=$all[$r]['imagemResposta']?>">Baixar anexo</a></p>
                                 <?php } ?>
                                 <br>
-                                <p style="font-size:11px;"><b>Enviado por: </b><?=$userP2['login']?><br><b>Data: </b><?=urldecode($all[$r]['dataResposta'])?></p>
+                                <p style="font-size:12px;"><b>Enviado por: </b><?=$userP2['login']?><br><b>Data: </b><?=urldecode($all[$r]['dataResposta'])?></p>
                             </fieldset>
                   
                         <?php

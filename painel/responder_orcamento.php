@@ -85,7 +85,7 @@ $(document).ready(function() {
 
 
 
-<div class="container" style="max-width:800px;padding-left:0px;padding-right:0px;">
+<div class="container" style="max-width:800px;padding-left:0px;padding-right:0px;padding:10px !important;">
 
 <h1 class="titulo-russo" id="orcamento-title">Entrar em contato</h1>
 <h5 class="texto-pt" id="orcamento-text">Responda o orçamento solicitado pelo usuário,<br> detalhe as infomações necessárias no campo de mensagem.</h5><br>
@@ -114,7 +114,7 @@ $(document).ready(function() {
         <input type="hidden" name="userIdResposta" value="<?= $_SESSION['autenticado_id']?>" />
 
               
-          <div class="btn-group btn-group-justified" role="group" style="width:85%;">
+          <div class="btn-group btn-group-justified" role="group" id="btn-enviar-form">
             <div class="btn-group" role="group">
              <input id="btn-grey-full" type="submit" name="cadastrar" value="ENVIAR"  class="btn btn-grey" />
             </div>
@@ -131,37 +131,31 @@ $(document).ready(function() {
 <br><br>
 <h1 class="titulo-russo" id="orcamento-title">Orçamento</h1>
 <h5 class="texto-pt" id="orcamento-text">Você está enviando uma resposta para o orçamento abaixo.</h5><br>
- 
 
-                    <div id="main">
-                        <div id="errorMsg"></div>
+                    <div>
+                        
                         <?php 
                         $CRUDMySQL = new CRUDMySQL();
               
                         $userP = $CRUDMySQL->getUserId($orcamento['userIdBanner']);
 
                         ?>
-                        <h3 style="text-transform: capitalize;"><?=$userP['login']?></h3>
-                    
-                            <fieldset style="background-color:transparent;border-color:#f18725;">
-                          
-                                <p><b>Marca: </b> <?=urldecode($orcamento['nomeBanner'])?></p>
-                                <p><b>Modelo: </b> <?=urldecode($orcamento['linkBanner'])?></p>
-                                <p><b>Mensagem: </b><?=urldecode($orcamento['descricaoBanner'])?></p>
+          
+                            <fieldset id="ver-orcamento-div" style="background-image: url('img/grafism-topo3.png');">
+                                <h1 class="titulo-russo" id="orcamento-title" style="text-transform: capitalize;color:white !important;background-image: url('img/grafism-topo3.png');padding-top:15px;padding-bottom:15px;"><?=$userP['login']?></h1>
+                                <p><b>MARCA: </b> <?=urldecode($orcamento['nomeBanner'])?></p>
+                                <p><b>MODELO: </b> <?=urldecode($orcamento['linkBanner'])?></p>
+                                <p><b>MENSAGEM: </b><?=urldecode($orcamento['descricaoBanner'])?></p>
                                 <?php if($orcamento['imagemBanner']){?>
-                                <p><b>Anexo: </b><a href="../upload/<?=$orcamento['imagemBanner']?>">Baixar anexo</a></p>
+                                <p><b>ANEXO: </b><a href="../upload/<?=$orcamento['imagemBanner']?>">Baixar anexo</a></p>
                                 <?php }?>
-                                <span style="font-size:12px !important;">-<br>Data:  <?=$orcamento['dataBanner']?> - (ref: <?=urldecode($orcamento['idBanner'])?>)</span>
+                                <span style="font-size:11px !important;">-<br><b>Data:</b>  <?=$orcamento['dataBanner']?><br><b>Ref.:</b> <?=urldecode($orcamento['idBanner'])?></span>
                             
                             </fieldset>
                   
                     </div>
                     
                 </div>
-
-
-
-
  
      <?php include('footer.php'); ?>
    </body>

@@ -1,4 +1,4 @@
-
+  
     #logo-nav{
       max-width: 100%;
     }
@@ -14,6 +14,10 @@
       background-color: white;
       border-bottom: none !important;
     }
+
+    .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover {
+    background-color: #fff;
+}
 
     /**LOGIN**/
     #container-login{margin-top:80px;padding-top: 120px; }
@@ -98,7 +102,10 @@
 }
 
 /***********************************************ORCAMENTO******************************/
-   
+    
+    #btn-enviar-form{
+      width:87%;
+    }
  
     #banner-default{
       padding-top: 15px;
@@ -112,10 +119,15 @@
     background-position: 20% 50% !important;
     
     }
+        #btn-enviar-form{
+      width:100%;
+    }
+ 
 }
 
       #input-lateral2{background-color: white;width: 100px;color: #f47c2b;font-family: 'PT Sans', sans-serif;font-weight: bold;font-size: 12px;border-top: none;border-left: none;padding-top: 15px !important;padding-bottom: 15px !important;border-radius: 0px;}
     .input-login2{background-color: white;width: 240px !important;padding-top: 15px !important;padding-bottom: 15px !important;border-top:none;height: auto;border-radius: 0px;}
+
     
     #banner-default-texto{
       color: white !important;margin-top:0px !important; margin-bottom:0px !important;font-size:18px;
@@ -145,6 +157,14 @@
 
     }
 
+    #ver-orcamento-div{
+      padding: 15px;
+      color: white !important;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: 30% 50%;
+    }
+
     #arquivo-orcamento{
       background-color:#F3F3F3;
       color: #808184;
@@ -156,6 +176,12 @@
       font-size: 13px;
       margin-bottom: 5px !important;
     }
+
+        #ver-orcamento-title{ 
+
+
+         color: #f47c2b;font-family: 'PT Sans', sans-serif;font-weight: bold;font-size: 13px;
+        }
 
     @media (max-width: 750px) {
     #row-orcamento{
