@@ -57,7 +57,7 @@ $(document).ready(function() {
     </div>
 </div>
 
-<div class="container" style="max-width:800px;padding-left:0px;padding-right:0px;">
+<div class="container" style="max-width:800px;padding:10px;">
  
 
 <h1 class="titulo-russo" id="orcamento-title">Escolha o serviço</h1>
