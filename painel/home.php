@@ -181,7 +181,7 @@ $all = $orcamentos->getAlluser($_SESSION['autenticado_id']);
 <div class="container" style="max-width:800px;padding-left:0px;padding-right:0px;">
   <div class="btn-group btn-group-justified" role="group" aria-label="...">
   <div class="btn-group" role="group">
-    <button style="background-color:#ffb62b;border-radius:none;font-size:20px;color:white;padding-top:2px;padding-bottom:3px;" type="button" class="btn btn-laranja"><img id="icon-btn" src="img/icon-home-white.png"></button>
+    <a href="perfil.php" style="background-color:#ffb62b;border-radius:none;font-size:20px;color:white;padding-top:2px;padding-bottom:3px;" type="button" class="btn btn-laranja"><img id="icon-btn" src="img/icon-home-white.png"></a>
   </div>
  
   <div class="btn-group" role="group">

@@ -21,6 +21,7 @@
                 <li><a href="#">Contato</a></li>
                 <li role="separator" class="divider"></li>-->
                 <li class="dropdown-header">PAINEL</li>
+                <li><a href="perfil.php">Perfil</a></li>
                 <li><a href="authentication.php?act=out">Sair</a></li>
               </ul>
             </li>
