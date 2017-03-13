@@ -1,13 +1,13 @@
-
 <?php 
 session_start();
+include('meta.php');
 
 require('lib/DBMySql.php');
 
 require('classe/bo/utilidadesBO.php');
 
 require_once 'classe/vo/orcamentos.php';
-include('meta.php');
+
 
 
 $orcamentos = new orcamentos();

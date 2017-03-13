@@ -15,14 +15,21 @@
           <ul class="nav navbar-nav navbar-right">
           
             <li class="dropdown">
-             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><b style="text-transform: capitalize;"><?=$_SESSION['autenticado_login']?></b><span class="caret"></span></a>
+             <a style="color:#F47C2B !important;" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php if(empty($_SESSION["autenticado_painel"])){?><b style="color:#F47C2B !important;">MENU</b><?php }else{ ?><b style="color:#F47C2B !important;text-transform: capitalize;"><?=$_SESSION['autenticado_login']?></b><?php } ?><span class="caret"></span></a>
               <ul class="dropdown-menu">
              <!--   <li><a href="#">Home</a></li>
                 <li><a href="#">Contato</a></li>
                 <li role="separator" class="divider"></li>-->
-                <li class="dropdown-header">PAINEL</li>
-                <li><a href="perfil.php">Perfil</a></li>
-                <li><a href="authentication.php?act=out">Sair</a></li>
+     
+                <li><a style="font-size:12px;" href="/">HOME</a></li>
+                <li style="background-color:#F47C2B;color:white;" class="dropdown-header">PAINEL</li>
+                <?php if(!empty($_SESSION["autenticado_painel"])){?>
+           
+                
+                <li style="font-size:11px;" ><a href="perfil.php">> Perfil</a></li>
+                <li style="font-size:11px;" ><a href="authentication.php?act=out">> Sair</a></li>
+            
+                <?php } ?>
               </ul>
             </li>
           </ul>

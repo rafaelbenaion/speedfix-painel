@@ -1,18 +1,16 @@
-
 <?php 
-ob_start();
 session_start();
-include('meta.php');
-
 if($_SESSION['autenticado_id'] == 1){
 header("Location: home-admin.php");
 }
+include('meta.php');
 
 require('classe/bo/utilidadesBO.php');
 require('classe/bo/uploadBO.php');
-require_once 'classe/vo/orcamentos.php';
-require_once 'classe/vo/respostas.php';
-require 'classe/bo/CRUDMySQL.php';
+require('classe/vo/orcamentos.php');
+require('classe/vo/respostas.php');
+require('classe/bo/CRUDMySQL.php');
+require('lib/DBMySql.php');
 
 $utilidadesBO = new utilidadesBO();
 $uploadBO = new uploadBO();

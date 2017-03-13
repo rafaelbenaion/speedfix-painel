@@ -1,9 +1,8 @@
-
 <?php 
 session_start();
+include('meta.php');
 
 require('lib/DBMySql.php');
-
 require('classe/bo/utilidadesBO.php');
 require_once 'classe/vo/orcamentos.php';
 require_once 'classe/vo/respostas.php';
@@ -16,7 +15,7 @@ $orcamentos->idBanner = $_GET['i'];
 $orcamento = $orcamentos->get();
 $all = $respostas->getAlluser($_GET['i']);
 
-include('meta.php');
+
 
 ?>  
 <script type="text/javascript">

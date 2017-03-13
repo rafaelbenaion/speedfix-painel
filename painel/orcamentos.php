@@ -8,12 +8,10 @@ if($_SESSION["autenticado_painel"] != "SIM"){
 //	header("Location: principal.php");
 //}
 
-
-
 require('lib/DBMySql.php');
 require('classe/bo/utilidadesBO.php');
 require('classe/bo/uploadBO.php');
-require_once 'classe/vo/orcamentos.php';
+require('classe/vo/orcamentos.php');
 
 $utilidadesBO = new utilidadesBO();
 $uploadBO = new uploadBO();

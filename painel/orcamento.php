@@ -10,7 +10,6 @@ if($_SESSION["autenticado_painel"] != "SIM") {
 
 
 require('lib/DBMySql.php');
-
 require('classe/bo/utilidadesBO.php');
 require_once 'classe/vo/orcamentos.php';
 require_once 'classe/vo/respostas.php';

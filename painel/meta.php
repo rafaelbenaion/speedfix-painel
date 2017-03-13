@@ -2,7 +2,6 @@
 if(empty($_SESSION["autenticado_painel"])){
 	header("Location: index.php");
 }
-include_once('lib/DBMySql.php');
 
 /*nome da página*/
 $file = explode("/",$_SERVER['SCRIPT_NAME']);
