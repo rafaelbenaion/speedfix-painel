@@ -32,14 +32,31 @@
 		public function newUser($login, $senha) {
 			
 			$db = new DBMySQL();
-			
-			$newUser = "INSERT INTO `users` (`idusuario`, `login`, `senha`) VALUES (NULL, '".$login."', SHA1('".$senha."'));";
-			
-			$db->do_query($newUser);
-			
-			$db->close();
+			$db2 = new DBMySQL();
 
-			return true;
+			$query2 = "SELECT * FROM `users` WHERE `login` = '$login'";
+			$db2->do_query($query2);
+			$result2 = $db2->getRow();
+
+			if($result2){
+
+				return false;
+
+			}else{
+
+				$newUser = "INSERT INTO `users` (`idusuario`, `login`, `senha`) VALUES (NULL, '".$login."', SHA1('".$senha."'));";
+			
+				$db->do_query($newUser);
+				
+				$db->close();
+
+				return true;
+
+			}
+			
+			
+			
+			
 			
 		}
 		

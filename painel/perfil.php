@@ -37,6 +37,12 @@ if(!empty($_POST['alterar'])){
   }
 }
 
+if(!empty($_POST['salvar2'])){
+  
+        @$vetAtu = $utilidadesBO->executaSQL("UPDATE `users` SET `senha`='".$senhaBD."' WHERE `idusuario` = ".$_SESSION['autenticado_id'].";");
+      
+}
+
 
 
 $orcamentos = new orcamentos();

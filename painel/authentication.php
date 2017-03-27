@@ -49,10 +49,10 @@ if($_GET['act'] == 'out'){
 				
 				header("Location: home.php");
 			}else{
-				$msg = "Senha incorreta!";
+				$msg = "Oops, senha incorreta!";
 			}
 		}else{
-			$msg = "Login incorreto!";
+			$msg = "Oops, esse email não existe!";
 		}
 	}else{
 		$msg = "";
@@ -85,18 +85,18 @@ if (isset($_POST["cadastro"]) == "Cadastrar"){
 						$_SESSION["autenticado_login"] = $dadosADM["DS_LOGIN"];
 						header("Location: home.php");
 					}else{
-						$msg = "Senha incorreta!";
+						$msg = "Oops, tente logar mais tarde.";
 					}
 				}else{
-					$msg = "Login incorreto!";
+					$msg = "Oops, tente logar mais tarde.";
 				}
 			
 
 
 		}else{
-			$msg = "Erro no cadastro!";
+			$msg = "Oops, erro no cadastro! Esse email já existe.";
 		}
-	header("Location: index.php?msg=$msg");		
+	header("Location: cadastro.php?msg=$msg");		
 	}
 
 ?>

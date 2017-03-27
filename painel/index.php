@@ -63,6 +63,12 @@ $(document).ready(function(){
       <div class="col-md-6"><h1 class="titulo-russo" id="login-titulo">Conta<br>SPEEDFIX</h1></div>
       <div class="col-md-6" id="coluna-login" style="max-width:350px;float:left;">
       <h1 class="titulo-russo" id="login-titulo-mobile">Conta<br>SPEEDFIX</h1>
+
+      <?php if($_GET['msg']){ ?>
+        <h4 style="color:red !important;" class="texto-pt" id="login-texto"><?php echo $_GET['msg'] ?></h4>
+      <?php } ?>
+
+      
       <h5 class="texto-pt" id="login-texto">A SPEEDFIX ajuda a consertar seus problemas. E você pode solicitar os seus pedidos aqui dentro.</h5>
         <form action="authentication.php" method="post">
 
