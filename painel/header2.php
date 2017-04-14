@@ -15,21 +15,56 @@
           <ul class="nav navbar-nav navbar-right">
           
             <li class="dropdown">
-             <a style="color:#F47C2B !important;" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php if(empty($_SESSION["autenticado_painel"])){?><b style="color:#F47C2B !important;">MENU</b><?php }else{ ?><b style="color:#F47C2B !important;text-transform: capitalize;"><?=$_SESSION['autenticado_login']?></b><?php } ?><span class="caret"></span></a>
+             <a style="color:white !important;background-color: #F47C2B !important;padding:0px;" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+
+             <?php if(empty($_SESSION["autenticado_painel"])){?>
+              
+              <b style="color:white !important;padding: 10px;">MENU</b>
+
+              <?php }else{ ?>
+
+                <b style="color:white !important;text-transform: capitalize;padding: 15px 30px;"><?=urldecode($_SESSION['autenticado_nome'])?></b>
+
+                <?php } ?>
+
+              <img src="img/engine.png"></a>
               <ul class="dropdown-menu">
              <!--   <li><a href="#">Home</a></li>
                 <li><a href="#">Contato</a></li>
                 <li role="separator" class="divider"></li>-->
      
-                <li><a style="font-size:12px;" href="/">HOME</a></li>
-                <li style="background-color:#F47C2B;color:white;" class="dropdown-header">PAINEL</li>
+     
                 <?php if(!empty($_SESSION["autenticado_painel"])){?>
            
                 
-                <li style="font-size:11px;" ><a href="perfil.php">> Perfil</a></li>
-                <li style="font-size:11px;" ><a href="authentication.php?act=out">> Sair</a></li>
+                <li><a class="menu-item" href="perfil.php"><b>Configurações</b></a></li>
+                <li><a class="menu-item" href="authentication.php?act=out"><b>Sair</b></a></li>
             
-                <?php } ?>
+                <?php }else{ ?>
+
+                  <li><a class="menu-item" href="../"><b>HOME</b></a></li>
+
+                <?php  } ?>
+                <style type="text/css">
+                  .menu-item{
+                    color:white !important  ;
+                  }
+                  .menu-item:hover{
+                    color:#F47C2B  !important  ;
+                    background-color: #373738 !important;
+                  }
+                  .dropdown-menu {
+                      background-color: #373738;
+                      border-radius: 0px;
+                      padding: 10px;
+                      margin-top: -1px !important;
+                      text-align: center;
+                  }
+                </style>
+                <script type="text/javascript">
+                  var tamanho = $('.dropdown-toggle').width();
+                  $(".dropdown-menu").width(tamanho);
+                </script>
               </ul>
             </li>
           </ul>

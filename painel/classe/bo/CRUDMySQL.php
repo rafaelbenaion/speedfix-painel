@@ -29,7 +29,7 @@
 			
 		}
 
-		public function newUser($login, $senha) {
+		public function newUser($login, $senha,$nome,$cpf) {
 			
 			$db = new DBMySQL();
 			$db2 = new DBMySQL();
@@ -44,7 +44,7 @@
 
 			}else{
 
-				$newUser = "INSERT INTO `users` (`idusuario`, `login`, `senha`) VALUES (NULL, '".$login."', SHA1('".$senha."'));";
+				$newUser = "INSERT INTO `users` (`idusuario`, `login`, `senha`, `nome`, `cpf`) VALUES (NULL, '".$login."', SHA1('".$senha."'), '".$nome."', '".$cpf."');";
 			
 				$db->do_query($newUser);
 				

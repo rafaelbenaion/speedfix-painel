@@ -169,23 +169,21 @@ $all = $orcamentos->getAlluser($_SESSION['autenticado_id']);
 
     <div class="container" style="max-width:800px;padding-left:0px;padding-right:0px;">
         <div id="banner-box">
-          <h1 class="titulo-russo" id="home-titulo">Olá <?=$_SESSION['autenticado_login']?>,</h1>
+          <h1 class="titulo-russo2" id="home-titulo">Olá <?=urldecode($_SESSION['autenticado_nome'])?>,</h1>
           <h5 class="texto-pt" id="home-texto">Bem vindo(a)! Esse é o painel de controle SpeedFix.</h5>
           <a href="solicitar_orcamento.php" type="button" id="home-btn-banner" class="btn btn-grey">SOLICITE O SEU ORÇAMENTO</a>
         </div>
     </div>
 </div>
 
-<div class="container" style="max-width:800px;padding-left:0px;padding-right:0px;">
-  <div class="btn-group btn-group-justified" role="group" aria-label="...">
-  <div class="btn-group" role="group">
-    <a href="perfil.php" style="background-color:#ffb62b;border-radius:none;font-size:20px;color:white;padding-top:2px;padding-bottom:3px;" type="button" class="btn btn-laranja"><img id="icon-btn" src="img/icon-home-white.png"></a>
-  </div>
- 
-  <div class="btn-group" role="group">
-     <button style="background-color:#f47c2b;border-radius:none;font-size:20px;color:white;padding-top:4px;padding-bottom:3px;" type="button" class="btn btn-laranja"><img id="icon-btn" src="img/icon-msg-white.png"></button>
-  </div>
+  <div class="container" id="banner-default" style="margin: 0 auto;
+  width: 100%;background-color: #595959;padding:12px;">   
+    <div class="container" style="max-width:800px;padding:0px;">
+          <h1 style="padding-left:10px;margin:0px;font-size:24px !important;" id="banner-default-title">Timeline</h1>
+    </div>
 </div>
+
+<div class="container" style="max-width:800px;padding-left:0px;padding-right:0px;">
 
 <?php
 

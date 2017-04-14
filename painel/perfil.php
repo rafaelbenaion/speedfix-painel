@@ -5,9 +5,12 @@ include('meta.php');
 require('lib/DBMySql.php');
 require('classe/bo/utilidadesBO.php');
 require_once 'classe/vo/orcamentos.php';
-
+require 'classe/bo/CRUDMySQL.php';
 
 $utilidadesBO = new utilidadesBO();
+
+$CRUDMySQL = new CRUDMySQL();
+$userP = $CRUDMySQL->getUserId($_SESSION['autenticado_id']);
 
 
 if(!empty($_POST['alterar'])){
@@ -38,9 +41,25 @@ if(!empty($_POST['alterar'])){
 }
 
 if(!empty($_POST['salvar2'])){
-  
-        @$vetAtu = $utilidadesBO->executaSQL("UPDATE `users` SET `senha`='".$senhaBD."' WHERE `idusuario` = ".$_SESSION['autenticado_id'].";");
-      
+
+        $cep = urlencode($_POST['cep']);
+        $rua = urlencode($_POST['rua']);
+        $complemento = urlencode($_POST['complemento']);
+        $cidade = urlencode($_POST['cidade']);
+        $estado = urlencode($_POST['estado']);
+        $bairro = urlencode($_POST['bairro']);
+
+        $_SESSION["autenticado_nome"] = urlencode($_POST['nome']);
+
+        $nome = urlencode($_POST['nome']);
+        $cpf = $_POST['cpf'];
+        $telefone = $_POST['telefone'];
+        //$email = $_POST['email'];
+         
+        @$vetAtu = $utilidadesBO->executaSQL("UPDATE `users` SET `nome`='".$nome."',`cpf`='".$cpf."',`telefone`='".$telefone."',`cep`='".$cep."',`rua`='".$rua."',`complemento`='".$complemento."',`cidade`='".$cidade."',`estado`='".$estado."',`bairro`='".$bairro."' WHERE `idusuario` = ".$_SESSION['autenticado_id'].";");
+        
+
+        header("Location: perfil.php");
 }
 
 
@@ -76,19 +95,29 @@ $(document).ready(function() {
 
   <?php include('header2.php'); ?>  
 
+<div class="container" id="banner-home" style="margin: 0 auto;
+  width: 100%;background-image: url('img/bg-home.png');margin-top:88px;background-size:cover;background-repeat:no-repeat;">   
+    <br><br>
+
+    <div class="container" style="max-width:800px;padding-left:0px;padding-right:0px;">
+        <div id="banner-box">
+          <h1 class="titulo-russo2" id="home-titulo">Olá <?=urldecode($_SESSION['autenticado_nome'])?>,</h1>
+          <h5 class="texto-pt" id="home-texto">Bem vindo(a)! Esse é o painel de controle SpeedFix.</h5>
+          <a href="solicitar_orcamento.php" type="button" id="home-btn-banner" class="btn btn-grey">SOLICITE O SEU ORÇAMENTO</a>
+        </div>
+    </div>
+</div>
 
 
   <div class="container" id="banner-default" style="margin: 0 auto;
-  width: 100%;background-image: url('img/grafism-topo.png');margin-top:88px;background-size:cover;background-repeat:no-repeat;">   
+  width: 100%;background-color: #595959;padding:12px;">   
     
 
-    <div class="container" style="max-width:800px;padding:10px;">
-        <div id="banner-box">
-         <h5 class="texto-pt" id="banner-default-texto">SPEEDFIX</h5>
-          <h1 class="titulo-russo" id="banner-default-title">DADOS PERFIL</h1>
-         
-          
-        </div>
+    <div class="container" style="max-width:800px;padding:0px;">
+
+          <h1 style="padding-left:10px;margin:0px;font-size:25px !important;" id="banner-default-title">Configurações</h1>
+
+
     </div>
 </div>
 
@@ -96,44 +125,83 @@ $(document).ready(function() {
  
 
 
-<h1 class="titulo-russo" id="orcamento-title" style="text-transform:capitalize;">Olá, <?=$_SESSION['autenticado_login']?></h1>
-<h5 class="texto-pt" id="orcamento-text">Esse é seu perfil e contém todas as suas informações. Mantenha seus dados atualizados.</h5>
-<br>
-<form action="home.php" method="post" enctype="multipart/form-data">
+
+<form action="perfil.php" method="post" enctype="multipart/form-data">
 <fieldset>
+<h1 class="titulo-russo" id="orcamento-title">Dados Pessoais</h1>
+<br>
 <div class="row" id="row-orcamento" style="padding:5px 0 5px 0;margin-right:0px !important;margin-left:0px !important;">
   <div class="col-sm-6" style="padding-left:0px;padding-right:0px;">
 <div class="input-group login">
             <span class="input-group-addon" id="input-lateral2">NOME</span>
-            <input  class="form-control input-login2" value="Nome" type="text" name="nome" id="nome" maxlength="255" required>
+            <input  class="form-control input-login2" value="<?=urldecode($userP['nome'])?>" type="text" name="nome" id="nome" maxlength="255" required>
           </div>
           <br>
           <div class="input-group login">
-            <span class="input-group-addon" id="input-lateral2">CIDADE</span>
-            <input  class="form-control input-login2" value="Cidade" type="text" name="nome" id="nome" maxlength="255" required>
+            <span class="input-group-addon" id="input-lateral2">CPF</span>
+            <input  class="form-control input-login2" value="<?=urldecode($userP['cpf'])?>" type="text" name="cpf" id="cpf" maxlength="255" required>
           </div>
-          <br>
-          <div class="input-group login">
-            <span class="input-group-addon" id="input-lateral2">ENDEREÇO</span>
-            <input name="link" class="form-control input-login2" name="usuario" value="Endereço" aria-describedby="basic-addon1" required>
-          </div>
+        
   </div>
   <div class="col-sm-6" style="padding-left:0px;padding-right:0px;">
 <div class="input-group login">
-            <span class="input-group-addon" id="input-lateral2">CEP</span>
-            <input  class="form-control input-login2" value="CEP" type="text" name="nome" id="nome" maxlength="255" required>
+            <span class="input-group-addon" id="input-lateral2">EMAIL</span>
+            <input  class="form-control input-login2" value="<?=urldecode($userP['login'])?>" type="text" name="email" id="nome" maxlength="255" required>
           </div>
           <br>
           <div class="input-group login">
             <span class="input-group-addon" id="input-lateral2">TELEFONE</span>
-            <input name="link" class="form-control input-login2" name="usuario" value="Telefone" aria-describedby="basic-addon1" required>
+            <input class="form-control input-login2" name="telefone" value="<?=urldecode($userP['telefone'])?>" aria-describedby="basic-addon1">
+          </div>
+          <br>
+         
+          </div>
+
+
+</fieldset>
+<fieldset>
+<h1 class="titulo-russo" id="orcamento-title">Endereço para coleta</h1>
+<h5 class="texto-pt" id="orcamento-text">(*) Campos obrigatórios.</h5>
+<br>
+<div class="row" id="row-orcamento" style="padding:5px 0 5px 0;margin-right:0px !important;margin-left:0px !important;">
+  <div class="col-sm-6" style="padding-left:0px;padding-right:0px;">
+<div class="input-group login">
+            <span class="input-group-addon" id="input-lateral2">RUA*</span>
+            <input  class="form-control input-login2" value="<?=urldecode($userP['rua'])?>" type="text" name="rua" id="nome" maxlength="255" required>
+          </div>
+          <br>
+          <div class="input-group login">
+            <span class="input-group-addon" id="input-lateral2">COMPLEMENTO</span>
+            <input  class="form-control input-login2" value="<?=urldecode($userP['complemento'])?>" type="text" name="complemento" id="cpf" maxlength="255">
+          </div>
+          <br>
+          <div class="input-group login">
+            <span class="input-group-addon" id="input-lateral2">CEP*</span>
+            <input  class="form-control input-login2" value="<?=urldecode($userP['cep'])?>" type="text" name="cep" id="cpf" maxlength="255" required>
+          </div>
+        
+  </div>
+  <div class="col-sm-6" style="padding-left:0px;padding-right:0px;">
+<div class="input-group login">
+            <span class="input-group-addon" id="input-lateral2">BAIRRO</span>
+            <input  class="form-control input-login2" value="<?=urldecode($userP['bairro'])?>" type="text" name="bairro" id="nome" maxlength="255">
+          </div>
+          <br>
+          <div class="input-group login">
+            <span class="input-group-addon" id="input-lateral2">CIDADE</span>
+            <input class="form-control input-login2" name="cidade" value="<?=urldecode($userP['cidade'])?>" aria-describedby="basic-addon1">
+          </div>
+          <br>
+          <div class="input-group login">
+            <span class="input-group-addon" id="input-lateral2">ESTADO</span>
+            <input class="form-control input-login2" name="estado" value="<?=urldecode($userP['estado'])?>" aria-describedby="basic-addon1">
           </div>
           <br>
          
         
    <div class="btn-group btn-group-justified" role="group" style="width:85%;">
             <div class="btn-group" role="group">
-             <input id="btn-grey-full" type="submit" name="cadastrar" value="SALVAR"  class="btn btn-grey" />
+             <input id="btn-orange-full" type="submit" name="salvar2" value="SALVAR ALTERAÇÕES"  class="btn btn-grey" />
             </div>
   </div>
           </div>
@@ -146,8 +214,7 @@ $(document).ready(function() {
 
 
 
-<h1 class="titulo-russo" id="orcamento-title" style="text-transform:capitalize;">Senha</h1>
-<h5 class="texto-pt" id="orcamento-text">Você pode utilizar esse campo para criar uma nova senha.</h5>
+<h1 class="titulo-russo" id="orcamento-title" style="text-transform:capitalize;">Alterar senha</h1>
 <br>
 <?php if($msgE != "") { ?><h5 style="color:red !important;" class="texto-pt" id="orcamento-text">Oops. <?=$msgE?></h5><br><?php } ?>
   <?php if($msgA != "") { ?><h5 style="color:green !important;" class="texto-pt" id="orcamento-text"><?=$msgA?></h5><br><?php } ?>
@@ -163,20 +230,20 @@ $(document).ready(function() {
           <br>
           <div class="input-group login">
             <span class="input-group-addon" id="input-lateral2">CONFIRME</span>
-            <input  type="password" name="senhaCf" class="form-control input-login2" placeholder="Digite novamente nova senha" type="text" name="nome" id="nome" maxlength="255" required>
+            <input  type="password" name="senhaCf" class="form-control input-login2" placeholder="Confirme nova senha" type="text" name="nome" id="nome" maxlength="255" required>
           </div>
        
   </div>
   <div class="col-sm-6" style="padding-left:0px;padding-right:0px;">
 <div class="input-group login">
             <span class="input-group-addon" id="input-lateral2">SENHA ANTIGA</span>
-            <input type="password" name="senhaAt" class="form-control input-login2" placeholder="Digite a senha antiga" type="text" name="nome" id="nome" maxlength="255" required>
+            <input type="password" name="senhaAt" class="form-control input-login2" placeholder="Insira sua senha antiga" type="text" name="nome" id="nome" maxlength="255" required>
           </div>
           <br>
     
    <div class="btn-group btn-group-justified" role="group" style="width:85%;">
             <div class="btn-group" role="group">
-             <input id="btn-grey-full" type="submit"  name="alterar"  value="ALTERAR"  class="btn btn-grey" />
+             <input id="btn-orange-full" type="submit"  name="alterar"  value="ALTERAR"  class="btn btn-grey" />
             </div>
   </div>
           </div>

@@ -11,6 +11,7 @@ function getADM($login){
 	while ($row = $db->getRow()) {
 		$dadosADM["DS_ID"] = $row["idusuario"];
 		$dadosADM["DS_LOGIN"] = $row["login"];
+		$dadosADM["DS_NOME"] = $row["nome"];
 		$dadosADM["DS_SENHA"] = $row["senha"];
 	}
 	$db->close();
@@ -46,6 +47,7 @@ if($_GET['act'] == 'out'){
 				$_SESSION["autenticado_painel"] = "SIM";
 				$_SESSION["autenticado_id"] = $dadosADM["DS_ID"];
 				$_SESSION["autenticado_login"] = $dadosADM["DS_LOGIN"];
+				$_SESSION["autenticado_nome"] = $dadosADM["DS_NOME"];
 				
 				header("Location: home.php");
 			}else{
@@ -68,7 +70,7 @@ if (isset($_POST["cadastro"]) == "Cadastrar"){
 		$CRUDMySQL = new CRUDMySQL();
 		//$CRUDMySQL->newUser($_POST["usuario"],$_POST["senha"])
 
-		if($CRUDMySQL->newUser($_POST["usuario"],$_POST["senha"])){
+		if($CRUDMySQL->newUser($_POST["usuario"],$_POST["senha"],$_POST["nome"],$_POST["cpf"])){
 		
 			$msg = "Cadastrado!";
 
