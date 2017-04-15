@@ -95,6 +95,36 @@ $(document).ready(function() {
 
   <?php include('header2.php'); ?>  
 
+<?php if($_SESSION['autenticado_id'] == 1){ ?>
+
+<div class="container" id="banner-default" style="margin: 0 auto;
+  width: 100%;background-color: #595959;padding:12px;margin-top:64px;">   
+    <div class="container" style="max-width:800px;padding:0px;">
+          <h1 style="padding-left:10px;margin:0px;font-size:25px !important;" id="banner-default-title">Configurações</h1>
+    </div>
+</div>
+
+
+
+<?php }else{ ?>
+
+
+<?php
+
+$orcamentosNews = new orcamentos();
+$allNews = $orcamentosNews->getAlluser($_SESSION['autenticado_id']); 
+
+$news = 0;
+$newsCount = 0;
+while(@$allNews[$news]) {
+    if($allNews[$news]['statusBanner']==2){
+      $newsCount ++;
+    }
+    $news++;
+
+}
+?>
+
 <div class="container" id="banner-home" style="margin: 0 auto;
   width: 100%;background-image: url('img/bg-home.png');margin-top:88px;background-size:cover;background-repeat:no-repeat;">   
     <br><br>
@@ -102,29 +132,26 @@ $(document).ready(function() {
     <div class="container" style="max-width:800px;padding-left:0px;padding-right:0px;">
         <div id="banner-box">
           <h1 class="titulo-russo2" id="home-titulo">Olá <?=urldecode($_SESSION['autenticado_nome'])?>,</h1>
-          <h5 class="texto-pt" id="home-texto">Bem vindo(a)! Esse é o painel de controle SpeedFix.</h5>
+          <h5 class="texto-pt" id="home-texto">Você tem <?= $newsCount;?> mensagens não visualizadas.</h5>
           <a href="solicitar_orcamento.php" type="button" id="home-btn-banner" class="btn btn-grey">SOLICITE O SEU ORÇAMENTO</a>
         </div>
     </div>
 </div>
 
 
-  <div class="container" id="banner-default" style="margin: 0 auto;
+<div class="container" id="banner-default" style="margin: 0 auto;
   width: 100%;background-color: #595959;padding:12px;">   
-    
-
     <div class="container" style="max-width:800px;padding:0px;">
-
           <h1 style="padding-left:10px;margin:0px;font-size:25px !important;" id="banner-default-title">Configurações</h1>
-
-
     </div>
 </div>
+
+<?php } ?>
 
 <div class="container" style="max-width:800px;padding:10px;">
  
 
-
+<?php if($_SESSION['autenticado_id'] != 1){ ?>
 
 <form action="perfil.php" method="post" enctype="multipart/form-data">
 <fieldset>
@@ -212,7 +239,7 @@ $(document).ready(function() {
 </form>
 <BR><BR>
 
-
+<?php } ?>
 
 <h1 class="titulo-russo" id="orcamento-title" style="text-transform:capitalize;">Alterar senha</h1>
 <br>

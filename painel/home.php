@@ -161,16 +161,30 @@ $all = $orcamentos->getAlluser($_SESSION['autenticado_id']);
 
   <?php include('header2.php'); ?>  
 
+<?php
 
+$orcamentosNews = new orcamentos();
+$allNews = $orcamentosNews->getAlluser($_SESSION['autenticado_id']); 
 
-  <div class="container" id="banner-home" style="margin: 0 auto;
+$news = 0;
+$newsCount = 0;
+while(@$allNews[$news]) {
+    if($allNews[$news]['statusBanner']==2){
+      $newsCount ++;
+    }
+    $news++;
+
+}
+?>
+
+<div class="container" id="banner-home" style="margin: 0 auto;
   width: 100%;background-image: url('img/bg-home.png');margin-top:88px;background-size:cover;background-repeat:no-repeat;">   
     <br><br>
 
     <div class="container" style="max-width:800px;padding-left:0px;padding-right:0px;">
         <div id="banner-box">
           <h1 class="titulo-russo2" id="home-titulo">Olá <?=urldecode($_SESSION['autenticado_nome'])?>,</h1>
-          <h5 class="texto-pt" id="home-texto">Bem vindo(a)! Esse é o painel de controle SpeedFix.</h5>
+          <h5 class="texto-pt" id="home-texto">Você tem <?= $newsCount;?> mensagens não visualizadas.</h5>
           <a href="solicitar_orcamento.php" type="button" id="home-btn-banner" class="btn btn-grey">SOLICITE O SEU ORÇAMENTO</a>
         </div>
     </div>
@@ -195,10 +209,16 @@ $all = $orcamentos->getAlluser($_SESSION['autenticado_id']);
                             $allR = $respostas->getAlluser($all[$r]['idBanner']);
                             $rn = 0;                                
                             while(@$allR[$rn]) {$rn++;}
+
+                            if($all[$r]['statusBanner'] == 2){
+                              $novaMensagem = "background-color:#ffe3d7;";
+                            }else{
+                              $novaMensagem = "";
+                            }
                           
                           ?>
 
-<div class="row" id="row-orcamento" style="border-bottom:1px solid grey;padding:20px 0 20px 0;margin-right:0px !important;margin-left:0px !important;">
+<div class="row" id="row-orcamento" style="<?php echo $novaMensagem; ?>border-bottom:1px solid grey;padding:20px 0 20px 0;margin-right:0px !important;margin-left:0px !important;">
   <?php
 
 $data = explode("/", $all[$r]['dataBanner']);
@@ -208,7 +228,14 @@ $data = $data[0]."/".$data[1]; // piece1
    ?>
   <div class="col-sm-2"> <h1 class="titulo-russo home-data" id="home-titulo" style="font-size:23px !important;"><?=$data?></h1></div>
   <div class="col-sm-2"><img id="img-tipo" src="<?php if($all[$r]['tipoBanner']==1){echo'img/tipo1.png';}else{echo'img/tipo2.png';}?>"></div>
-  <div class="col-sm-4"> <h1 class="texto-pt" id="home-texto-solicitou">Você fez uma solicitação de orçamento.</h1></div>
+  <div class="col-sm-4">
+  <?php  if($rn == 0){ ?>
+  <h1 class="texto-pt" id="home-texto-solicitou">Você fez uma solicitação de orçamento.</h1>
+  <?php  }else{ ?>
+     <h1 style="margin-top:0px !important;" class="texto-pt" id="home-texto-solicitou">Você fez uma solicitação de orçamento.</h1>
+  <img style="max-width:90px;" src="img/confirmado.png">
+  <?php } ?>
+  </div>
 
   <div class="col-sm-4"><a href="ver_orcamento.php?i=<?=$all[$r]['idBanner']?>&token=<?=md5($all[$r]['idBanner'])?>">
 

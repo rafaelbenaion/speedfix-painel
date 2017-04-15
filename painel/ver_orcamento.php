@@ -15,7 +15,12 @@ $orcamentos->idBanner = $_GET['i'];
 $orcamento = $orcamentos->get();
 $all = $respostas->getAlluser($_GET['i']);
 
-
+if($_SESSION['autenticado_id'] != 1){
+  if($orcamento['statusBanner'] == 2){      
+    $utilidadesBO = new utilidadesBO();        
+    @$vetAtu = $utilidadesBO->executaSQL("UPDATE `orcamentos` SET `statusBanner`='1' WHERE `idBanner` = ".$orcamento['idBanner'].";");
+  }
+}
 
 ?>  
 <script type="text/javascript">
@@ -64,6 +69,22 @@ $(document).ready(function() {
   <?php }else{ ?>
 
 
+<?php
+
+$orcamentosNews = new orcamentos();
+$allNews = $orcamentosNews->getAlluser($_SESSION['autenticado_id']); 
+
+$news = 0;
+$newsCount = 0;
+while(@$allNews[$news]) {
+    if($allNews[$news]['statusBanner']==2){
+      $newsCount ++;
+    }
+    $news++;
+
+}
+?>
+
 <div class="container" id="banner-home" style="margin: 0 auto;
   width: 100%;background-image: url('img/bg-home.png');margin-top:88px;background-size:cover;background-repeat:no-repeat;">   
     <br><br>
@@ -71,7 +92,7 @@ $(document).ready(function() {
     <div class="container" style="max-width:800px;padding-left:0px;padding-right:0px;">
         <div id="banner-box">
           <h1 class="titulo-russo2" id="home-titulo">Olá <?=urldecode($_SESSION['autenticado_nome'])?>,</h1>
-          <h5 class="texto-pt" id="home-texto">Bem vindo(a)! Esse é o painel de controle SpeedFix.</h5>
+          <h5 class="texto-pt" id="home-texto">Você tem <?= $newsCount;?> mensagens não visualizadas.</h5>
           <a href="solicitar_orcamento.php" type="button" id="home-btn-banner" class="btn btn-grey">SOLICITE O SEU ORÇAMENTO</a>
         </div>
     </div>

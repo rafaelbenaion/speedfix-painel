@@ -118,7 +118,7 @@
 			
 			$db = new DBMySQL();
 			
-			$query = "SELECT * FROM `orcamentos` WHERE `statusBanner` = 1 ORDER BY `nomeBanner` ASC";
+			$query = "SELECT * FROM `orcamentos` ORDER BY `nomeBanner` ASC";
 		
 			$db->do_query($query);
 		
