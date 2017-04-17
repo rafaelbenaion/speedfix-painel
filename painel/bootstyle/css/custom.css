@@ -7,7 +7,9 @@
       padding-bottom:0px !important;
     }
     #nav-correct{
- 
+
+  max-width: 850px !important;
+
     }
     .navbar{
       padding-top: 17px;
@@ -199,3 +201,4 @@
    #arquivo-orcamento{width: 100% !important;}
     }
 }
+

@@ -58,11 +58,63 @@ if(isset($_POST['cadastrar']) && $_POST['cadastrar'] == 'ENVIAR') {
     
     $orcamentos->newBanner();
     
-    $msg = "Banner cadastrado com sucesso";
+    $msg = "Orçamento solicitado com sucesso";
+
+
+        $to = "speedfix@onda.com.br";
+        $subject = "Novo orçamento - Speedfix Painel";
+
+        $message = "
+        <html>
+          <head>
+          <title>Novo orçamento - Speedfix Painel</title>
+          </head>
+          <body>
+            <p>Um novo orçamento foi solicitado pelo Painel!</p>
+            <table>
+             
+              <tr>
+                <td><b>Nome:</b></td>
+                <td>".urldecode($_SESSION['autenticado_nome'])."</td>
+              </tr>
+              <tr>
+                <td><b>Marca:</b></td>
+                <td>".$_POST['nome']."</td>
+              </tr>
+              <tr>
+                <td><b>Modelo:</b></td>
+                <td>".$_POST['link']."</td>
+              </tr>
+              <tr>
+                <td><b>Mensagem:</b></td>
+                <td>".$_POST['descricao']."</td>
+              </tr>
+              <tr>
+                <td><b>Data:</b></td>
+                <td>".date("d/m/Y")."</td>
+              </tr>
+ 
+            </table>
+            <a href='http://speedfix.inf.br/painel/'><p>Ver mais informações -></p></a>
+            <br>
+            <p>(Mensagem automática)</p>
+          </body>
+        </html>
+        ";
+
+        // Always set content-type when sending HTML email
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+        // More headers
+        $headers .= 'From: <speedfix@speedfix.inf.br>' . "\r\n";
+        //$headers .= 'Cc: myboss@example.com' . "\r\n";
+
+        mail($to,$subject,$message,$headers);
+ 
     
   } else {
     
-    $msg = "Dados corrompidos VAZIO";
+    $msg = "Oops, ocorreu um erro.";
     
   }
   
@@ -112,18 +164,18 @@ if(isset($_POST['editar']) && $_POST['editar'] == 'Editar') {
       
       $orcamentos->editBanner();
       
-      $msg = "Banner editado com sucesso";
+      $msg = "Orçamento editado com sucesso";
       
     } else {
       
-      $msg = "Dados corrompidos";
+      $msg = "Oops!";
       
     }
     
     
   } else {
     
-    $msg = "Dados corrompidos";
+    $msg = "Oops!";
     
   }
   
@@ -142,11 +194,11 @@ if(isset($_GET['acao']) && $_GET['acao'] == 'excluir') {
     
     $orcamentos->deleteBanner();
     
-    $msg = "Banner excluído com sucesso";
+    $msg = "Orçamento excluído com sucesso";
     
   } else {
     
-    $msg = "Dados corrompidos";
+    $msg = "Oops!";
     
   }
   
@@ -222,11 +274,48 @@ while(@$allNews[$news]) {
   <?php
 
 $data = explode("/", $all[$r]['dataBanner']);
-$data = $data[0]."/".$data[1]; // piece1
-
-
+$mes = "";
+switch ($data[1]) {
+  case '01':
+    $mes = "Jan";
+    break;
+  case '02':
+    $mes = "Fev";
+    break;
+  case '03':
+    $mes = "Mar";
+    break;
+  case '04':
+    $mes = "Abr";
+    break;
+  case '05':
+    $mes = "Maio";
+    break;
+  case '06':
+    $mes = "Jun";
+    break;
+  case '07':
+    $mes = "Jul";
+    break;
+  case '08':
+    $mes = "Ago";
+    break;
+  case '09':
+    $mes = "Set";
+    break;
+  case '10':
+    $mes = "Out";
+    break;
+  case '11':
+    $mes = "Nov";
+    break;
+  case '12':
+    $mes = "Dez";
+    break;
+}
+$data = $data[0]; // piece1
    ?>
-  <div class="col-sm-2"> <h1 class="titulo-russo home-data" id="home-titulo" style="font-size:23px !important;"><?=$data?></h1></div>
+  <div class="col-sm-2"> <h1 class="titulo-russo home-data" id="home-titulo" style="margin:0px;text-align:center;font-size:28px !important;"><?=$data?></h1><h1 class="titulo-russo home-data" id="home-titulo" style="font-size:18px !important;margin:0px;text-align:center;"><?=$mes?></h1></div>
   <div class="col-sm-2"><img id="img-tipo" src="<?php if($all[$r]['tipoBanner']==1){echo'img/tipo1.png';}else{echo'img/tipo2.png';}?>"></div>
   <div class="col-sm-4">
   <?php  if($rn == 0){ ?>

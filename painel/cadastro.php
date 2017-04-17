@@ -1,4 +1,5 @@
 <?php 
+$sem_footer = 1;
 session_start();
 if($_SESSION["autenticado_painel"] == "SIM"){
   header("Location: home.php");

@@ -58,8 +58,12 @@ if(!empty($_POST['salvar2'])){
          
         @$vetAtu = $utilidadesBO->executaSQL("UPDATE `users` SET `nome`='".$nome."',`cpf`='".$cpf."',`telefone`='".$telefone."',`cep`='".$cep."',`rua`='".$rua."',`complemento`='".$complemento."',`cidade`='".$cidade."',`estado`='".$estado."',`bairro`='".$bairro."' WHERE `idusuario` = ".$_SESSION['autenticado_id'].";");
         
-
-        header("Location: perfil.php");
+          ?>
+          <script type="text/javascript">
+          window.location.href = "/painel/perfil.php";
+          </script>
+          <?php
+        
 }
 
 

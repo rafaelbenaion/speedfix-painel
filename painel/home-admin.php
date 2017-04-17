@@ -66,6 +66,52 @@ if(isset($_POST['cadastrar']) && $_POST['cadastrar'] == 'ENVIAR') {
 
     $respostas->newResposta();
 
+
+
+        $to =$_POST['userEmail'];
+        $subject = "Resposta orçamento - Speedfix Painel";
+
+        $message = "
+        <html>
+          <head>
+          <title>Resposta orçamento - Speedfix Painel</title>
+          </head>
+          <body>
+            <p>Olá! Seu orçamento foi respondido por um de nossos administradores!</p>
+            <a href='http://speedfix.inf.br/painel/'><p>Acessar painel -></p></a>
+            <table>
+             
+              <tr>
+                <td><b>Título:</b></td>
+                <td>".$_POST['nome']."</td>
+              </tr>
+              <tr>
+                <td><b>Mensagem:</b></td>
+                <td>".$_POST['descricao']."</td>
+              </tr>
+              <tr>
+                <td><b>Data:</b></td>
+                <td>".date("d/m/Y")."</td>
+              </tr>
+ 
+            </table>
+            
+            <br>
+            <p>(Mensagem automática)</p>
+          </body>
+        </html>
+        ";
+
+        // Always set content-type when sending HTML email
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+        // More headers
+        $headers .= 'From: <speedfix@speedfix.inf.br>' . "\r\n";
+        //$headers .= 'Cc: myboss@example.com' . "\r\n";
+
+        mail($to,$subject,$message,$headers);
+
+
     $utilidadesBO2 = new utilidadesBO();        
     @$vetAtu2 = $utilidadesBO2->executaSQL("UPDATE `orcamentos` SET `statusBanner`='2' WHERE `idBanner` = ".$_POST['bannerIdResposta'].";");
     

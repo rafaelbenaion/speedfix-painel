@@ -80,6 +80,12 @@ $(document).ready(function() {
 
   <?php } ?> 
 
+<?php 
+                        $CRUDMySQL = new CRUDMySQL();
+              
+                        $userP = $CRUDMySQL->getUserId($orcamento['userIdBanner']);
+
+                        ?>
 
 
 <div class="container" style="max-width:800px;padding-left:0px;padding-right:0px;padding:10px !important;">
@@ -109,6 +115,9 @@ $(document).ready(function() {
         <input type="hidden" name="bannerUserIdResposta" value="<?=$orcamento['userIdBanner']?>" />
         <input type="hidden" name="bannerIdResposta" value="<?=$orcamento['idBanner']?>" />
         <input type="hidden" name="userIdResposta" value="<?= $_SESSION['autenticado_id']?>" />
+        <input type="hidden" name="userEmail" value="<?= $userP['login'] ?>" />
+
+       
 
               
           <div class="btn-group btn-group-justified" role="group" id="btn-enviar-form">
@@ -131,12 +140,7 @@ $(document).ready(function() {
 
                     <div>
                         
-                        <?php 
-                        $CRUDMySQL = new CRUDMySQL();
-              
-                        $userP = $CRUDMySQL->getUserId($orcamento['userIdBanner']);
-
-                        ?>
+                        
           
                             <fieldset id="ver-orcamento-div" style="background-color:#595959;">
                             

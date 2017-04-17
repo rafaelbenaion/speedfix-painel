@@ -32,6 +32,7 @@ if($_GET['act'] == 'out'){
 	$_SESSION["autenticado_painel"] = NULL;
 	$_SESSION["autenticado_id"] = NULL;
 	$_SESSION["autenticado_login"] = NULL;
+	$_SESSION["autenticado_nome"] = NULL;
 	session_destroy();
 	header("Location: index.php");
 } else {
@@ -85,7 +86,8 @@ if (isset($_POST["cadastro"]) == "Cadastrar"){
 						$_SESSION["autenticado_painel"] = "SIM";
 						$_SESSION["autenticado_id"] = $dadosADM["DS_ID"];
 						$_SESSION["autenticado_login"] = $dadosADM["DS_LOGIN"];
-						header("Location: home.php");
+						$_SESSION["autenticado_nome"] = $dadosADM["DS_NOME"];
+						header("Location: perfil.php");
 					}else{
 						$msg = "Oops, tente logar mais tarde.";
 					}
